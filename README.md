@@ -7,5 +7,6 @@
 
 ### How to run:
 1. Clone repository
-2. Run ``npm run serve`` in project root
-3. Open ``https://localhost:8080`` in a browser 
+2. Run ``npm install`` to install required node modules
+3. Run ``npm run serve`` in project root to run development build
+4. Open ``https://localhost:8080`` in a browser 
