@@ -1,9 +1,4 @@
 <template>
-  <div id="nav">
-    <!-- might add more pages later
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>-->
-  </div>
   <router-view/>
 </template>
 
