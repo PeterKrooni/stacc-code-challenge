@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="container">
         <div id="searchbox">
         <Search @search="search" @failed="searchFail" />
         </div>
@@ -76,6 +76,9 @@ export default{
 </script>
 
 <style scoped>
+#container{
+    min-width: 350px;
+}
 #searchbox{
   display: flex;
   justify-content: center;

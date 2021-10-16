@@ -62,10 +62,10 @@ img{
     margin-top: 4%;
     margin-bottom: 2%;
     box-shadow: 0 0 20px rgba(59, 59, 59, 0.308);
-    min-width: 180px;
+    min-width: 200px;
     max-width: 200px;
-    min-height: 180px;
-    max-height: 200px;
+    min-height: 220px;
+    max-height: 220px;
     image-rendering: high-quality;
     border-radius: 50%;
 }
