@@ -15,6 +15,9 @@
             :wiki_image="wiki_image"
         />
         </div>
+        <div id="wiki-info" v-show="show_pep">
+            <p>{{wiki_info}} <a :href="wiki_link" target="_blank">read more</a></p>
+        </div>
     </div>
 </template>
 
@@ -38,6 +41,8 @@ export default{
             identifier: "-",
             dob: "-",
             wiki_image: String,
+            wiki_info: "",
+            wiki_link: "#"
         }
     },
     methods: {
@@ -60,14 +65,23 @@ export default{
         },
         async setWikiImage(){
         // Search for wiki entry of persons
-        const res = await fetch (`w/api.php?format=json&action=query&prop=extracts|pageimages&exintro&explaintext&generator=search&gsrsearch=intitle:${this.name}&gsrlimit=1&redirects=1`)
+        const res = await fetch (`w/api.php?format=json&action=query&prop=extracts|pageimages|info&exintro&explaintext&inprop=url&generator=search&gsrsearch=intitle:${this.name}&gsrlimit=1&redirects=1`)
         const data = await res.json();
+        console.log(data)
         const wiki_page_title = data['query']['pages'][Object.keys(data['query']['pages'])]['title'];
+        
+        // Set wiki extract
+        this.wiki_info = data['query']['pages'][Object.keys(data['query']['pages'])]['extract'];
+        if (this.wiki_info.length > 200){
+            this.wiki_info = this.wiki_info.substring(0, 199);
+            this.wiki_info += "...";
+            // Set link to wiki page
+            this.wiki_link = data['query']['pages'][Object.keys(data['query']['pages'])]['canonicalurl']
+        }
         
         // Get thumbnail from wiki page
         const wiki_page_image = await fetch (`w/api.php?action=query&titles=${wiki_page_title}&prop=pageimages&format=json&pithumbsize=250`)
         const page_data = await wiki_page_image.json();
-        console.log(page_data);
         // Get source URL of thumbnail
         this.wiki_image = page_data['query']['pages'][Object.keys(page_data['query']['pages'])]['thumbnail']['source'];
         }
@@ -78,6 +92,15 @@ export default{
 <style scoped>
 #container{
     min-width: 350px;
+    box-shadow: 1px 5px 5px 1px rgb(238, 238, 238);
+    padding: 30px;
+    border-radius: 20px;
+}
+@media screen and (max-width: 620px){
+  #container{
+    padding: 0px;
+    box-shadow: none;
+  }
 }
 #searchbox{
   display: flex;
@@ -85,5 +108,9 @@ export default{
   align-items: center;
   width: 100%;
   margin-top: 5%;
+}
+#wiki-info{
+    max-width: 350px;
+    text-align: left;
 }
 </style>

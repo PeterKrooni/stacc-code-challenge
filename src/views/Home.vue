@@ -45,6 +45,7 @@ export default {
 #logo{
   width: 220px;
   height: 140px;
+  margin-bottom: 5%;
 }
 #vs{
   display: flex;
@@ -89,7 +90,7 @@ export default {
   margin-top: 10%;
 }
 #vs-indicator{
-  color: rgb(143, 143, 143);
+  color: rgb(85, 0, 0);
   text-shadow: 0 0 4px rgb(119, 119, 119);
   font-family: 'Brush Script MT', 'Brush Script Std', 'cursive';
   margin-top: 10%;
