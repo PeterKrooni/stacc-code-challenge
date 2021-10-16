@@ -92,7 +92,7 @@ export default {
 #vs-indicator{
   color: rgb(85, 0, 0);
   text-shadow: 0 0 4px rgb(119, 119, 119);
-  font-family: 'Brush Script MT', 'Brush Script Std', 'cursive';
+  font-family: 'Apple Chancery', 'cursive';
   margin-top: 10%;
   font-size: 60px;
   display: flex;

@@ -15,7 +15,7 @@
             :wiki_image="wiki_image"
         />
         </div>
-        <div id="wiki-info" v-show="show_pep">
+        <div id="wiki-info" v-show="wiki_found">
             <p>{{wiki_info}} <a :href="wiki_link" target="_blank">read more</a></p>
         </div>
     </div>
@@ -42,13 +42,15 @@ export default{
             dob: "-",
             wiki_image: String,
             wiki_info: "",
-            wiki_link: "#"
+            wiki_link: "#",
+            wiki_found: false
         }
     },
     methods: {
         async search(api_response){
         this.wiki_image = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"; // first image result of "default picture" on google images
-
+        this.wiki_found = false;
+        
         this.name = api_response['hits']['0']['name']
         this.score = api_response['hits']['0']['score']
         this.identifier = api_response['hits']['0']['identifiers']
@@ -78,6 +80,7 @@ export default{
             // Set link to wiki page
             this.wiki_link = data['query']['pages'][Object.keys(data['query']['pages'])]['canonicalurl']
         }
+        this.wiki_found = true;
         
         // Get thumbnail from wiki page
         const wiki_page_image = await fetch (`w/api.php?action=query&titles=${wiki_page_title}&prop=pageimages&format=json&pithumbsize=250`)
