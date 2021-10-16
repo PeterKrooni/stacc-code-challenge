@@ -64,6 +64,7 @@ export default{
         searchFail(){      
         this.show_notfound = true;
         this.show_pep = false;
+        this.wiki_found = false;
         },
         async setWikiImage(){
         // Search for wiki entry of persons
