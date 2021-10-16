@@ -111,7 +111,6 @@ export default{
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 5%;
 }
 #wiki-info{
     max-width: 350px;

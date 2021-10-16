@@ -45,7 +45,7 @@ export default {
 #logo{
   width: 220px;
   height: 140px;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
 }
 #vs{
   display: flex;
@@ -81,7 +81,7 @@ export default {
   position: absolute;
   bottom: 5%;
 }
-@media screen and (max-height: 970px){
+@media screen and (max-height: 920px){
   #btn-container{
     bottom: 90%;
   }
