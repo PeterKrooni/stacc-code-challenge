@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <img alt="Vue logo" src="../assets/logo.png" id="logo">
     <div id="searchbox">
       <Search @search="search" @failed="searchFail" />
     </div>
@@ -60,12 +60,12 @@ export default {
       // Search for wiki entry of persons
       const res = await fetch (`w/api.php?format=json&action=query&prop=extracts|pageimages&exintro&explaintext&generator=search&gsrsearch=intitle:${this.name}&gsrlimit=1&redirects=1`)
       const data = await res.json();
-
       const wiki_page_title = data['query']['pages'][Object.keys(data['query']['pages'])]['title'];
       
       // Get thumbnail from wiki page
-      const wiki_page_image = await fetch (`w/api.php?action=query&titles=${wiki_page_title}&prop=pageimages&format=json&pithumbsize=100`)
+      const wiki_page_image = await fetch (`w/api.php?action=query&titles=${wiki_page_title}&prop=pageimages&format=json&pithumbsize=250`)
       const page_data = await wiki_page_image.json();
+      console.log(page_data);
       // Get source URL of thumbnail
       this.wiki_image = page_data['query']['pages'][Object.keys(page_data['query']['pages'])]['thumbnail']['source'];
     }
@@ -81,5 +81,9 @@ export default {
   align-items: center;
   width: 100%;
   margin-top: 5%;
+}
+#logo{
+  width: 220px;
+  height: 140px;
 }
 </style>

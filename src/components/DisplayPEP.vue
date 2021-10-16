@@ -54,11 +54,12 @@ export default{
 img{
     margin-top: 4%;
     margin-bottom: 2%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.308);
-    min-width: 150px;
-    max-width: 150px;
-    min-height: 150px;
-    max-height: 150px;
+    box-shadow: 0 0 20px rgba(59, 59, 59, 0.308);
+    min-width: 180px;
+    max-width: 200px;
+    min-height: 180px;
+    max-height: 200px;
+    image-rendering: high-quality;
     border-radius: 50%;
 }
 #info-table{
@@ -66,11 +67,11 @@ img{
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    min-width: 400px;
+    min-width: 350px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 #info-table thead tr{
-    background-color: #7c0000;
+    background-color: #720000;
     color: #ffffff;
     text-align: left;
 }

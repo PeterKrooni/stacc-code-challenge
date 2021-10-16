@@ -22,6 +22,7 @@ export default{
             const res = await fetch (`api/pep?name=${e.target.value}`)
             const data = await res.json();
             this.api_response = data;
+            console.log(this.api_response)
             if (this.api_response['numberOfHits'] === 0){
                 this.$emit('failed');
             }else{
