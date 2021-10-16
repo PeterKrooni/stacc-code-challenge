@@ -11,7 +11,8 @@
       <DisplayPEP v-show="show_pep" 
         :name="name"
         :score="score"
-        :dataset="dataset"
+        :identifier="identifier"
+        :dob="dob"
         :wiki_image="wiki_image"
       />
     </div>
@@ -35,7 +36,8 @@ export default {
         show_notfound: false,
         name: "-",
         score: "-",
-        dataset: "-",
+        identifier: "-",
+        dob: "-",
         wiki_image: String,
     }
   },
@@ -45,7 +47,8 @@ export default {
 
       this.name = api_response['hits']['0']['name']
       this.score = api_response['hits']['0']['score']
-      this.dataset = api_response['hits']['0']['dataset']
+      this.identifier = api_response['hits']['0']['identifiers']
+      this.dob = api_response['hits']['0']['birth_date']
 
       this.setWikiImage();
       

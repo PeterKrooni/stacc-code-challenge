@@ -1,3 +1,4 @@
+<!-- display component for PEP -->
 <template>
     <div id="pep-container">
         <img :src="wiki_image" alt="">
@@ -8,13 +9,15 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Found in dataset</th>
+                        <th>Identifiers</th>
+                        <th>Date of birth</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>{{name}}</td>
-                        <td>{{dataset}}</td>
+                        <td>{{identifier}}</td>
+                        <td>{{dob}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -33,7 +36,11 @@ export default{
             type: String,
             default: '-'
         },
-        dataset: {
+        identifier: {
+            type: String,
+            default: '-'
+        },
+        dob: {
             type: String,
             default: '-'
         },
