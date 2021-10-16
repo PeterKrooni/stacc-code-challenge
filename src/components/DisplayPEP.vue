@@ -1,21 +1,24 @@
 <template>
-    <div id="info-container">
-        <table id="info-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Score</th>
-                    <th>Dataset</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{name}}</td>
-                    <td>{{score}}</td>
-                    <td>{{dataset}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div id="pep-container">
+        <img :src="wiki_image" alt="">
+        <h3>PEP Score</h3>
+        <p>{{score}}</p>
+        <div id="info-container">
+            <table id="info-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Found in dataset</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{name}}</td>
+                        <td>{{dataset}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>    
     </div>
 </template>
 
@@ -33,6 +36,10 @@ export default{
         dataset: {
             type: String,
             default: '-'
+        },
+        wiki_image: {
+            type: String,
+            default: '-' 
         }
     }
 }
@@ -43,6 +50,16 @@ export default{
     width: 100%;
     display: flex;
     justify-content: center;
+}
+img{
+    margin-top: 4%;
+    margin-bottom: 2%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.308);
+    min-width: 150px;
+    max-width: 150px;
+    min-height: 150px;
+    max-height: 150px;
+    border-radius: 50%;
 }
 #info-table{
     border-collapse: collapse;
@@ -59,6 +76,7 @@ export default{
 }
 #info-table th, td{
     padding: 12px 15px;
+    text-align: left;
 }
 #info-table tbody tr {
     border-bottom: thin solid #dddddd;

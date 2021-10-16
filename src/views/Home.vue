@@ -2,13 +2,17 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <div id="searchbox">
-      <Search @search="search" />
+      <Search @search="search" @failed="searchFail" />
     </div>
     <div>
+      <div v-show="show_notfound" id="none-found-container">
+          <h5>No results found.</h5>
+      </div>
       <DisplayPEP v-show="show_pep" 
         :name="name"
         :score="score"
         :dataset="dataset"
+        :wiki_image="wiki_image"
       />
     </div>
   </div>
@@ -28,18 +32,42 @@ export default {
   data(){
     return {
         show_pep: false,
+        show_notfound: false,
         name: "-",
         score: "-",
         dataset: "-",
+        wiki_image: String,
     }
   },
   methods: {
-    search(api_response){
-      console.log(api_response)
+    async search(api_response){
+      this.wiki_image = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"; // first image result of "default picture" on google images
+
       this.name = api_response['hits']['0']['name']
       this.score = api_response['hits']['0']['score']
       this.dataset = api_response['hits']['0']['dataset']
+
+      this.setWikiImage();
+      
+      this.show_notfound = false;
       this.show_pep = true;
+    },
+    searchFail(){      
+      this.show_notfound = true;
+      this.show_pep = false;
+    },
+    async setWikiImage(){
+      // Search for wiki entry of persons
+      const res = await fetch (`w/api.php?format=json&action=query&prop=extracts|pageimages&exintro&explaintext&generator=search&gsrsearch=intitle:${this.name}&gsrlimit=1&redirects=1`)
+      const data = await res.json();
+
+      const wiki_page_title = data['query']['pages'][Object.keys(data['query']['pages'])]['title'];
+      
+      // Get thumbnail from wiki page
+      const wiki_page_image = await fetch (`w/api.php?action=query&titles=${wiki_page_title}&prop=pageimages&format=json&pithumbsize=100`)
+      const page_data = await wiki_page_image.json();
+      // Get source URL of thumbnail
+      this.wiki_image = page_data['query']['pages'][Object.keys(page_data['query']['pages'])]['thumbnail']['source'];
     }
   }
 }

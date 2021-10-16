@@ -22,10 +22,14 @@ export default{
             const res = await fetch (`api/pep?name=${e.target.value}`)
             const data = await res.json();
             this.api_response = data;
-            this.$emit('search', this.api_response);
+            if (this.api_response['numberOfHits'] === 0){
+                this.$emit('failed');
+            }else{
+                this.$emit('search', this.api_response);
+            }
         }
     },
-    emits: ['search']
+    emits: ['search', 'failed']
 }
 </script>
 
