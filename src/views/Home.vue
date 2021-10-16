@@ -6,7 +6,7 @@
         <PEPChecker class="pep-check" />
       </div>
       <div id="vs-indicator" v-show="vs">
-        <p>VS</p>
+        <p>vs</p>
       </div>
       <div v-show="vs">
         <PEPChecker class="pep-check" />
@@ -49,7 +49,7 @@ export default {
 }
 #vs{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-flow: row;
 }
 @media screen and (max-width: 620px){
@@ -92,8 +92,10 @@ export default {
 #vs-indicator{
   color: rgb(85, 0, 0);
   text-shadow: 0 0 4px rgb(119, 119, 119);
-  font-family: 'Apple Chancery', 'cursive';
+  font-family: 'Candara light';
   margin-top: 10%;
+  margin-left: 6.5%;
+  margin-right: 6.5%;
   font-size: 60px;
   display: flex;
   justify-content: center;
