@@ -81,7 +81,7 @@ export default {
   position: absolute;
   bottom: 5%;
 }
-@media screen and (max-height: 900px){
+@media screen and (max-height: 970px){
   #btn-container{
     bottom: 90%;
   }
