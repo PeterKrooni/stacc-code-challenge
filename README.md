@@ -10,7 +10,7 @@ For denne oppgaven bestemte jeg meg for å lage en visuelt tilfredsstillende net
 
 ### How to run:
 1. Clone repository
-2. Run ``npm install`` to install required node modules
+2. Run ``npm install`` in project root to install required node modules
 3. Run ``npm run serve`` in project root to run development build
 4. Open ``https://localhost:8080`` in a browser 
 
