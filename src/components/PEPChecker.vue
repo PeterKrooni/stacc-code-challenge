@@ -63,6 +63,9 @@ export default{
             this.identifier = api_response['hits']['0']['identifiers']
             this.dob = api_response['hits']['0']['birth_date']
 
+            // Emit score for VS 
+            this.$emit('score', this.score);
+
             this.setWikiImage();
             
             this.show_notfound = false;
@@ -102,7 +105,8 @@ export default{
             // Get source URL of thumbnail
             this.wiki_image = page_data['query']['pages'][Object.keys(page_data['query']['pages'])]['thumbnail']['source'];
         }
-    }
+    },
+    emits: ['score']
 }
 </script>
 

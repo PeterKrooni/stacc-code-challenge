@@ -3,13 +3,14 @@
     <img alt="Vue logo" src="../assets/logo.png" id="logo">
     <div id="vs">
       <div>
-        <PEPChecker class="pep-check" />
+        <PEPChecker class="pep-check" @score="getScore1"/>
       </div>
       <div id="vs-indicator" v-show="vs">
-        <p>vs</p>
+        <p>Score Difference:</p>
+        <p id="vs-diff" :style="[(scorediff>=0) ? {'color': 'green'} : {'color': 'red'}]">{{scorediff}}</p>
       </div>
       <div v-show="vs">
-        <PEPChecker class="pep-check" />
+        <PEPChecker class="pep-check" @score="getScore2"/>
       </div>
     </div>
     <div id="btn-container">
@@ -30,11 +31,22 @@ export default {
   data() {
     return {
       vs: false,
+      score1: 0,
+      score2: 0,
+      scorediff: 0
     }
   },
   methods: {
     toggleVs(){
       this.vs= !this.vs;
+    },
+    getScore1(score){
+      this.score1 = score.toFixed(4);
+      this.scorediff = (this.score2 - this.score1).toFixed(4);
+    },
+    getScore2(score){
+      this.score2 = score.toFixed(4);
+      this.scorediff = (this.score2 - this.score1).toFixed(4);
     }
   }
 }
@@ -83,8 +95,7 @@ export default {
 }
 @media screen and (max-height: 920px){
   #btn-container{
-    bottom: 90%;
-    left: 40%;
+    bottom: 95%;
   }
 }
 @media screen and (max-height: 920px){
@@ -99,15 +110,23 @@ export default {
   margin-top: 10%;
 }
 #vs-indicator{
-  color: rgb(85, 0, 0);
-  text-shadow: 0 0 4px rgb(119, 119, 119);
-  font-family: 'Candara light';
-  margin-top: 10%;
-  margin-left: 6.5%;
-  margin-right: 6.5%;
-  font-size: 60px;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-bottom: 5%;
+  color: rgb(20, 20, 20);
+  text-shadow: 0 0 1px rgb(119, 119, 119);
+  font-family: 'Candara light'; 
+  font-size: 30px;
   display: flex;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
+}
+#vs-indicator p {
+  margin: 5px;
+}
+#vs-diff{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 25px;
 }
 </style>
