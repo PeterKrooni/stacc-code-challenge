@@ -81,6 +81,7 @@ export default{
             this.currently_searching = true;
             this.show_pep = false;
             this.wiki_found = false;
+            this.show_notfound = false;
         },
         async setWikiImage(){
             // Search for wiki entry of persons
