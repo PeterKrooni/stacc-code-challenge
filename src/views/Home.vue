@@ -84,6 +84,15 @@ export default {
 @media screen and (max-height: 920px){
   #btn-container{
     bottom: 90%;
+    left: 40%;
+  }
+}
+@media screen and (max-height: 920px){
+  .plus-button{
+    font-size: 12px;
+    width: 6em;
+    height: 2em;
+    padding: 5px;
   }
 }
 #versus-container{
