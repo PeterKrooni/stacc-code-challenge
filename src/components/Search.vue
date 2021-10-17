@@ -19,6 +19,7 @@ export default{
     },
     methods: {
         async search(e){
+            this.$emit('searching');
             const res = await fetch (`api/pep?name=${e.target.value}`)
             const data = await res.json();
             this.api_response = data;
@@ -30,7 +31,7 @@ export default{
             }
         }
     },
-    emits: ['search', 'failed']
+    emits: ['searching', 'search', 'failed']
 }
 </script>
 
