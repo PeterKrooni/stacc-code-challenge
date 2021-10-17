@@ -134,19 +134,19 @@ export default{
 .loader,
 .loader:before,
 .loader:after {
-  background: #3b0000;
+  background: #3b0000a6;
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
-  width: 1em;
+  width: 0.7em;
   height: 1em;
 }
 .loader {
-  color: #3b0000;
+  color: #3b0000a6;
   text-indent: -9999em;
   margin: 88px auto;
   position: absolute;
   left: 50%;
-  font-size: 11px;
+  font-size: 8px;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
