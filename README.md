@@ -5,13 +5,18 @@
 For denne oppgaven bestemte jeg meg for å lage en visuelt tilfredsstillende nettside for å vise PEP checks, med en additional twist av å blande inn Wikipedia APIen for å hente ut litt informasjon fra personen, samt et bilde. Jeg har også laget en comparison tool, der man kan sammenlikned to PEPs og få en indikator på score-forskjellen mellom dem.
 
 ### Requirements:
-- node.js and node package manager (npm)
-- Vue.js 3  --> ``npm install -g @vue/cli``
+- node.js and node package manager (npm) or yarn
+- Vue.js 3  --> ``npm install -g @vue/cli`` or ``yarn global add @vue/cli``
 
 ### How to run:
 1. Clone repository
+--- npm
 2. Run ``npm install`` in project root to install required node modules
 3. Run ``npm run serve`` in project root to run development build
+4. Open ``https://localhost:8080`` in a browser 
+--- yarn
+2. Run ``yarn install`` in project root to install required modules
+3. Run ``yarn run serve`` in project root to run development build
 4. Open ``https://localhost:8080`` in a browser 
 
 ### Kommentarer
