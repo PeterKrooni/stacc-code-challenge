@@ -12,6 +12,7 @@
 
 <script>
 export default{
+    name: 'Search',
     data(){
         return {
             api_response: Object

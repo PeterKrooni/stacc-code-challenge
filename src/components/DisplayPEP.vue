@@ -27,6 +27,7 @@
 
 <script>
 export default{
+    name: 'DisplayPEP',
     props: {
         name: {
             type: String,

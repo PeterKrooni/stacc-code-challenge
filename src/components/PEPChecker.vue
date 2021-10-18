@@ -63,10 +63,10 @@ export default{
             this.identifier = api_response['hits']['0']['identifiers']
             this.dob = api_response['hits']['0']['birth_date']
 
-            // Emit score for VS 
+            // Emit score for versus 
             this.$emit('score', this.score);
 
-            this.setWikiImage();
+            this.getWikiData();
             
             this.show_notfound = false;
             this.show_pep = true;
@@ -75,6 +75,8 @@ export default{
             this.show_notfound = true;
             this.show_pep = false;
             this.wiki_found = false;
+            this.wiki_info = "";
+            this.wiki_link = "#";
             this.currently_searching = false;
         },
         loadSearchingAnimation(){
@@ -83,28 +85,33 @@ export default{
             this.wiki_found = false;
             this.show_notfound = false;
         },
-        async setWikiImage(){
+        async getWikiData(){
             // Search for wiki entry of persons
             const res = await fetch (`w/api.php?format=json&action=query&prop=extracts|pageimages|info&exintro&explaintext&inprop=url&generator=search&gsrsearch=intitle:${this.name}&gsrlimit=1&redirects=1`)
             const data = await res.json();
-            console.log(data)
-            const wiki_page_title = data['query']['pages'][Object.keys(data['query']['pages'])]['title'];
-            
-            // Set wiki extract
-            this.wiki_info = data['query']['pages'][Object.keys(data['query']['pages'])]['extract'];
-            if (this.wiki_info.length > 200){
-                this.wiki_info = this.wiki_info.substring(0, 199);
-                this.wiki_info += "...";
-                // Set link to wiki page
-                this.wiki_link = data['query']['pages'][Object.keys(data['query']['pages'])]['canonicalurl']
+
+            if(res.ok){
+              const wiki_page_title = data['query']['pages'][Object.keys(data['query']['pages'])]['title'];
+              
+              // Set wiki extract
+              this.wiki_info = data['query']['pages'][Object.keys(data['query']['pages'])]['extract'];
+              if (this.wiki_info.length > 200){
+                  this.wiki_info = this.wiki_info.substring(0, 199);
+                  this.wiki_info += "...";
+                  // Set link to wiki page
+                  this.wiki_link = data['query']['pages'][Object.keys(data['query']['pages'])]['canonicalurl']
+              }
+              this.wiki_found = true;
+              
+              // Get thumbnail from wiki page
+              const wiki_page_image = await fetch (`w/api.php?action=query&titles=${wiki_page_title}&prop=pageimages&format=json&pithumbsize=250`)
+              const page_data = await wiki_page_image.json();
+              // Get source URL of thumbnail
+              this.wiki_image = page_data['query']['pages'][Object.keys(page_data['query']['pages'])]['thumbnail']['source'];
+            }else{
+              console.error("Wiki response unsuccessful ", res.data, res.code, res.message);
+              this.searchFail(); 
             }
-            this.wiki_found = true;
-            
-            // Get thumbnail from wiki page
-            const wiki_page_image = await fetch (`w/api.php?action=query&titles=${wiki_page_title}&prop=pageimages&format=json&pithumbsize=250`)
-            const page_data = await wiki_page_image.json();
-            // Get source URL of thumbnail
-            this.wiki_image = page_data['query']['pages'][Object.keys(page_data['query']['pages'])]['thumbnail']['source'];
         }
     },
     emits: ['score']

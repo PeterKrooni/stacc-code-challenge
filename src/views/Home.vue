@@ -109,6 +109,12 @@ export default {
 #versus-container{
   margin-top: 10%;
 }
+@media screen and (max-height: 812px) and (max-width: 400px){
+  #vs-indicator{
+    padding-top: 20%;
+    padding-bottom: 20%;
+  }
+}
 #vs-indicator{
   margin-left: 3%;
   margin-right: 3%;
