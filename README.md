@@ -7,16 +7,13 @@ For denne oppgaven bestemte jeg meg for å lage en visuelt tilfredsstillende net
 ---
 
 ### Requirements:
-- node.js and node package manager (npm) or yarn
-- Vue.js 3  --> ``npm install -g @vue/cli`` or ``yarn global add @vue/cli``
-
+- node.js and node package manager (npm)
+- Vue.js 3  --> ``npm install -g @vue/cli``
 ### How to run:
 1. Clone repository
 2. Run ``npm install`` in project root to install required node modules
 3. Run ``npm run serve`` in project root to run development build
 4. Open ``https://localhost:8080`` in a browser 
-
-``npm`` can be substituted by ``yarn``
 
 ---
 
